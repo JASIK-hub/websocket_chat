@@ -1,0 +1,20 @@
+@import 'variables';
+.group_header_container{
+    background-color: $primary-color;
+    width:540px;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-family: monospace;
+
+    .group_name,.online_people{
+        margin:5px;
+    }
+    .group_name{
+        color:white;
+    }
+    .online_people{
+        color:$gray-text-color
+    }
+}

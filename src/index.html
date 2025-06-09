@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebSocket Chat</title>
+</head>
+<body>
+  <input type="text" class="userName">
+  <h1>Чат на WebSocket</h1>
+  <div id="messages" style="border:1px solid #ccc; height:200px; overflow-y: scroll; padding: 5px;"></div>
+  <input id="input" type="text" placeholder="Введите сообщение" autofocus />
+  <button id="sendBtn">Отправить</button>
+
+  <script>
+    const ws = new WebSocket('ws://192.168.0.100:3000');
+    const messagesDiv = document.getElementById('messages');
+    const input = document.getElementById('input');
+    const sendBtn = document.getElementById('sendBtn');
+
+    document.querySelector('.userName').addEventListener('keydown',(e)=>{
+      if(e.key=='Enter') {
+        let userName=e.target.value.trim('')
+        if(ws.readyState==WebSocket.OPEN){
+          ws.send(JSON.stringify({type:'join',name:userName}))
+        }
+      }
+    })
+    ws.onopen = () => {
+      console.log('Подключение к серверу установлено');
+    };
+
+    ws.onmessage = (event) => {
+      const msg = document.createElement('div');
+      let msgData=JSON.parse(event.data);
+      messagesDiv.appendChild(msg);
+      msg.innerHTML=`
+        <p>${msgData.name}</p>
+        <p>${msgData.text}</p>
+      `
+    };
+
+    sendBtn.onclick = () => {
+      if (input.value.trim() !== '') {
+        ws.send(JSON.stringify({ type: 'message', text: input.value.trim() }));
+        input.value = '';
+      }
+    };
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendBtn.click();
+    });
+  </script>
+</body>
+</html>

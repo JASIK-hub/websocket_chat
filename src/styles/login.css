@@ -1,0 +1,39 @@
+.websocket_img {
+  width: 150px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+* {
+  font-family: monospace;
+}
+
+form {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  gap: 5px;
+}
+form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+form label .login_name_input {
+  padding: 5px 0px;
+}
+form button {
+  padding: 5px 0px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,66 @@
+@import 'header';
+@mixin chat($bg,$color,$align,$br){
+    background-color: $bg;    
+    color: $color;                   
+    align-self:$align;           
+    padding: 8px 12px;
+    border-radius:$br;  
+    max-width: 50%;                 
+    margin: 5px 0;
+    word-wrap: break-word;
+}
+body{
+    margin:0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.chat_body_container{
+    position: relative;
+    width:540px;
+    box-sizing: border-box;
+    padding:30px;
+    height:650px;
+    background-image: url(https://i.pinimg.com/736x/38/9b/e1/389be14d3e9cf8b213a3fad886772adf.jpg);
+    background-size:cover;
+
+    .message_input{
+        position: absolute;
+        bottom:10px;
+        left: 50%;
+        width:80%;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns:25px 1fr 25px 25px;
+        padding:10px;
+        border-radius: 10px;
+        background-color: $primary-color;
+        .fileIcon:hover{
+            color:white;
+        }
+
+        .message_typer{
+            background-color: inherit;
+            border:none;
+            color:white;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+}
+
+
+.message{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    .right_user {
+       @include chat(#4a90e2,white,flex-end, 15px 15px 0 15px)
+        }
+
+    .left_user {
+        @include chat(#353535,white,flex-start,  15px 15px 15px 0)
+    }
+}
