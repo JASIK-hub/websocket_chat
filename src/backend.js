@@ -8,7 +8,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 const app = express();
 
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.use(cors(), express.json());
 
 const pool = mysql.createPool({
