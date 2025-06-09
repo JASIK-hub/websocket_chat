@@ -10,7 +10,7 @@ export default function RenderHeader({username}){
     const [online,onlineSet]=useState(0)
 
     useEffect(()=>{
-        ws.current=new WebSocket('ws://localhost:3000')
+        ws.current=new WebSocket('wss://myapp.up.railway.app')
         ws.current.onopen=()=>{
             console.log('Connection set')
             ws.current.send(JSON.stringify({type:"join",name:username}))

@@ -7,13 +7,15 @@ const WebSocket = require('ws');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+const PORT = process.env.DB_PORT || 3000;
 app.use(cors(), express.json());
 
 const pool = mysql.createPool({
   host:process.env.DB_HOST,
   user:process.env.DB_USER,
   password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 3306,
   database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
@@ -72,5 +74,5 @@ wss.on('connection', (ws) => {
 
 
 server.listen(PORT,'0.0.0.0', () => {
-  console.log(`Сервер запущен на http://localhost:${PORT}`);
+  console.log(`Сервер запущен`);
 });
