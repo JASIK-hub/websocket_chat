@@ -54,7 +54,7 @@ wss.on('connection', (ws) => {
         time:new Date().toLocaleTimeString()
       }
     if(txt){
-         pool.query('INSERT INTO chat (user_name,text) VALUES (?,?)', [ws.username,txt], (err) => {
+         pool.query('INSERT INTO new_database (user_name,text) VALUES (?,?)', [ws.username,txt], (err) => {
       if (err) {
         console.error('Ошибка сохранения в БД:', err);
         return;
