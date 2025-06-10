@@ -6,7 +6,7 @@ import Chat from './Chat'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
- <BrowserRouter basename="/websocket_chat">
+ <BrowserRouter>
   <Chat/>
  </BrowserRouter>
       
