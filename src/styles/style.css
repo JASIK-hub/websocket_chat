@@ -62,6 +62,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.message .message_text, .message .message_owner {
+  margin: 0;
+}
 .message .right_user {
   background-color: #4a90e2;
   color: white;

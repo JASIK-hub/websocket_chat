@@ -55,7 +55,9 @@ body{
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-
+    .message_text,.message_owner{
+        margin:0
+    }
     .right_user {
        @include chat(#4a90e2,white,flex-end, 15px 15px 0 15px)
         }

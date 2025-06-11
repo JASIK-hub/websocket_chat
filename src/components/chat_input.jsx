@@ -8,11 +8,10 @@ export default function RenderHeader({username}){
     const [input,setInput]=useState("")
     const [messages,setMessages]=useState([])
     const [online,onlineSet]=useState(0)
+    const [color]=useState(getRandomColor)
 
-    useEffect(()=>{
-        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-        const host = window.location.host;
-        ws.current = new WebSocket(`${protocol}://${host}`);
+    useEffect(()=>{ 
+        ws.current = new WebSocket(`wss://websocketchat-production-8b98.up.railway.app`);
         ws.current.onopen=()=>{
             console.log('Connection set')
             ws.current.send(JSON.stringify({type:"join",name:username}))
@@ -52,6 +51,10 @@ export default function RenderHeader({username}){
          reader.readAsArrayBuffer(file)
         }  
     }
+    function getRandomColor() {
+        const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
     return(
             <div className='chat_container'>
                 <div className="group_header_container">
@@ -62,9 +65,11 @@ export default function RenderHeader({username}){
                 <div className="chat_body_container">
                     <div className="message" >
                         {messages.map((message, index) => (
-                            <p key={index} className={message.name === username ? 'right_user' : 'left_user'}>
-                            {message.text}
-                            </p>
+                            <div className={`message_container ${message.name === username ? 'right_user' : 'left_user'}`} key={index}>
+                                <h4 className='message_owner' style={{color}}>{message.name== username ? '' : message.name}</h4>          
+                                <p className='message_text'>{message.text}</p>
+                                
+                            </div>
                         ))}
                         <div ref={endMessage} />
                     </div>
